@@ -58,7 +58,7 @@ const main = async () => {
     } as any)
   );
 
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors: false });
 
   const PORT = "4000";
 
