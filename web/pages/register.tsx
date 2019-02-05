@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import { Formik, Field } from "formik";
 import { InputField } from "../components/fields/InputField";
 import { RegisterComponent } from "../generated/apolloComponents";
+import Router from "next/router";
 
 export default () => {
   return (
@@ -21,6 +22,7 @@ export default () => {
                   }
                 });
                 console.log(response);
+                Router.push("/success");
               } catch (err) {
                 const errors: { [key: string]: string } = {};
                 err.graphQLErrors[0].validationErrors.forEach(
@@ -32,7 +34,6 @@ export default () => {
                     );
                   }
                 );
-
                 setErrors(errors);
               }
             }}
