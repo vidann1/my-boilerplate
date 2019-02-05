@@ -1,3 +1,4 @@
+/*
 import * as React from "react";
 import { NextContext } from "next";
 import Layout from "../components/Layout";
@@ -49,3 +50,4 @@ class ListDetailPage extends React.Component<Props> {
 }
 
 export default ListDetailPage;
+*/

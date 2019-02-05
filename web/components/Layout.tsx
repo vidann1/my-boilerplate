@@ -29,6 +29,10 @@ const Layout: React.FunctionComponent<Props> = ({
         <Link href="/login">
           <a>Login</a>
         </Link>{" "}
+        |
+        <Link href="/forgot-password">
+          <a>forgot password</a>
+        </Link>
         |{" "}
         <Link href="/register">
           <a>Register</a>
