@@ -3,8 +3,9 @@ import Layout from "../components/Layout";
 
 import { Formik, Field } from "formik";
 import { InputField } from "../components/fields/InputField";
-import { LoginComponent } from "../generated/apolloComponents";
+import { LoginComponent, MeQuery } from "../generated/apolloComponents";
 import Router from "next/router";
+import { meQuery } from "../graphql/queries/me";
 
 export default () => {
   return (
@@ -17,7 +18,19 @@ export default () => {
             onSubmit={async (data, { setErrors }) => {
               // const errors: { [key: string]: string } = {};
               const response = await login({
-                variables: data
+                variables: data,
+                update: (cache, { data }) => {
+                  if (!data || !data.login) {
+                    return;
+                  }
+                  cache.writeQuery<MeQuery>({
+                    query: meQuery,
+                    data: {
+                      __typename: "Query",
+                      me: data.login
+                    }
+                  });
+                }
               });
               console.log(response);
               if (response && response.data && !response.data.login) {
